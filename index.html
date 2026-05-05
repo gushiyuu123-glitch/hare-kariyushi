@@ -1,18 +1,166 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IBM+Plex+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
-    rel="stylesheet">
+
+  <!-- Basic SEO -->
+  <title>HARE KARIYUSHI｜沖縄の夏を涼しく、端正に整えるかりゆしウェア</title>
+  <meta
+    name="description"
+    content="HARE KARIYUSHIは、沖縄の暑さに寄り添う涼しさと、街でも仕事でもきちんと見える端正さを仕立てたかりゆしウェアブランドです。"
+  />
+  <meta
+    name="keywords"
+    content="HARE KARIYUSHI, かりゆしウェア, 沖縄, 夏服, メンズシャツ, リゾートウェア, 涼しいシャツ, 沖縄ファッション"
+  />
+  <meta name="author" content="HARE KARIYUSHI" />
+  <meta name="creator" content="Gushiken Design" />
+  <meta name="designer" content="Gushiken Design" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://hare-kariyushi.vercel.app/" />
+
+  <!-- Author / Designer -->
+  <link rel="author" href="https://gushikendesign.com/" />
+
+  <!-- Language -->
+  <link rel="alternate" href="https://hare-kariyushi.vercel.app/" hreflang="ja" />
+  <link rel="alternate" href="https://hare-kariyushi.vercel.app/" hreflang="x-default" />
+
   <!-- Google翻訳を完全無効化 -->
   <meta name="google" content="notranslate" />
-  <title>hare-kariyushi</title>
+
+  <!-- Theme / Browser UI -->
+  <meta name="theme-color" content="#F8F6F0" />
+  <meta name="msapplication-TileColor" content="#F8F6F0" />
+  <meta name="msapplication-config" content="/browserconfig.xml" />
+  <meta name="color-scheme" content="light" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128x128.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/favicon-180x180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256x256.png" />
+  <link rel="icon" type="image/png" sizes="384x384" href="/favicon-384x384.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+
+  <!-- Apple / PWA -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- OGP -->
+  <meta property="og:site_name" content="HARE KARIYUSHI" />
+  <meta property="og:title" content="HARE KARIYUSHI｜沖縄の夏を涼しく、端正に整えるかりゆしウェア" />
+  <meta
+    property="og:description"
+    content="沖縄の暑さに寄り添う涼しさと、街でも仕事でもきちんと見える端正さを仕立てたかりゆしウェア。"
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hare-kariyushi.vercel.app/" />
+  <meta property="og:image" content="https://hare-kariyushi.vercel.app/ogp.png" />
+  <meta property="og:image:secure_url" content="https://hare-kariyushi.vercel.app/ogp.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="HARE KARIYUSHIのかりゆしウェアビジュアル" />
+  <meta property="og:locale" content="ja_JP" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HARE KARIYUSHI｜涼しく、端正に。" />
+  <meta
+    name="twitter:description"
+    content="沖縄の夏を、静かに整える一枚。涼しさと端正さを仕立てたかりゆしウェア。"
+  />
+  <meta name="twitter:image" content="https://hare-kariyushi.vercel.app/ogp.png" />
+  <meta name="twitter:image:alt" content="HARE KARIYUSHIのかりゆしウェアビジュアル" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IBM+Plex+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://gushikendesign.com/#organization",
+          "name": "Gushiken Design",
+          "url": "https://gushikendesign.com/"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://hare-kariyushi.vercel.app/#website",
+          "url": "https://hare-kariyushi.vercel.app/",
+          "name": "HARE KARIYUSHI",
+          "description": "沖縄の暑さに寄り添う涼しさと、街でも仕事でもきちんと見える端正さを仕立てたかりゆしウェアブランド。",
+          "inLanguage": "ja",
+          "creator": {
+            "@id": "https://gushikendesign.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://hare-kariyushi.vercel.app/#webpage",
+          "url": "https://hare-kariyushi.vercel.app/",
+          "name": "HARE KARIYUSHI｜沖縄の夏を涼しく、端正に整えるかりゆしウェア",
+          "description": "HARE KARIYUSHIは、沖縄の暑さに寄り添う涼しさと、街でも仕事でもきちんと見える端正さを仕立てたかりゆしウェアブランドです。",
+          "isPartOf": {
+            "@id": "https://hare-kariyushi.vercel.app/#website"
+          },
+          "about": {
+            "@id": "https://hare-kariyushi.vercel.app/#brand"
+          },
+          "creator": {
+            "@id": "https://gushikendesign.com/#organization"
+          },
+          "inLanguage": "ja"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://hare-kariyushi.vercel.app/#organization",
+          "name": "HARE KARIYUSHI",
+          "url": "https://hare-kariyushi.vercel.app/",
+          "logo": "https://hare-kariyushi.vercel.app/images/HARE.svg",
+          "sameAs": [
+            "https://hare-kariyushi.vercel.app/"
+          ]
+        },
+        {
+          "@type": "Brand",
+          "@id": "https://hare-kariyushi.vercel.app/#brand",
+          "name": "HARE KARIYUSHI",
+          "url": "https://hare-kariyushi.vercel.app/",
+          "logo": "https://hare-kariyushi.vercel.app/images/HARE.svg",
+          "description": "涼しく、端正に。沖縄の夏を静かに整えるかりゆしウェア。",
+          "creator": {
+            "@id": "https://gushikendesign.com/#organization"
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>

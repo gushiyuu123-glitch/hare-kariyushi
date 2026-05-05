@@ -12,8 +12,13 @@ const FOOTER_NAV = [
 const INFO = [
   "KARIYUSHI WEAR / OKINAWA",
   "SELECTED SUMMER EDIT",
-  "DEMO SITE / SAMPLE CONTENT",
+  "EDITORIAL COMMERCE SITE",
 ];
+
+const DESIGNER = {
+  name: "GUSHIKEN DESIGN",
+  url: "https://gushikendesign.com/",
+};
 
 export default function Footer() {
   const reduced = useReducedMotion();
@@ -45,47 +50,47 @@ export default function Footer() {
     });
   };
 
-return (
-  <footer
-    id="footer"
-    className={styles.footer}
-    aria-labelledby="footer-title"
-  >
-    <div className={styles.inner}>
-      <h2 id="footer-title" className={styles.srOnly}>
-        HARE footer
-      </h2>
+  return (
+    <footer
+      id="footer"
+      className={styles.footer}
+      aria-labelledby="footer-title"
+    >
+      <div className={styles.inner}>
+        <h2 id="footer-title" className={styles.srOnly}>
+          HARE footer
+        </h2>
 
-      <div className={styles.top}>
-        <div className={styles.brandBlock}>
-          <button
-            type="button"
-            className={styles.brand}
-            onClick={onTop}
-            aria-label="Back to top"
-          >
-            <img
-              className={styles.logo}
-              src="/images/HARE.svg"
-              alt=""
-              aria-hidden="true"
-              decoding="async"
-              draggable="false"
-            />
-            <span className={styles.srOnly}>HARE</span>
-          </button>
+        <div className={styles.top}>
+          <div className={styles.brandBlock}>
+            <button
+              type="button"
+              className={styles.brand}
+              onClick={onTop}
+              aria-label="Back to top"
+            >
+              <img
+                className={styles.logo}
+                src="/images/HARE.svg"
+                alt=""
+                aria-hidden="true"
+                decoding="async"
+                draggable="false"
+              />
+              <span className={styles.srOnly}>HARE</span>
+            </button>
 
-          <p className={styles.kicker}>KARIYUSHI WEAR / OKINAWA</p>
+            <p className={styles.kicker}>KARIYUSHI WEAR / OKINAWA</p>
+          </div>
+
+          <div className={styles.statementBlock}>
+            <p className={styles.statement}>
+              涼しく、端正に。
+              <br />
+              沖縄の夏を、静かに整える一枚。
+            </p>
+          </div>
         </div>
-
-        <div className={styles.statementBlock}>
-          <p className={styles.statement}>
-            涼しく、端正に。
-            <br />
-            沖縄の夏を、静かに整える一枚。
-          </p>
-        </div>
-      </div>
 
         <div className={styles.middle}>
           <nav className={styles.nav} aria-label="Footer navigation">
@@ -137,8 +142,25 @@ return (
               }}
             >
               INQUIRY
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
+        </div>
+
+        <div className={styles.creditRow}>
+          <p className={styles.creditLead}>
+            Designed and developed by
+          </p>
+
+          <a
+            href={DESIGNER.url}
+            className={styles.creditLink}
+            target="_blank"
+            rel="author noopener"
+            aria-label={`${DESIGNER.name} official website`}
+          >
+            {DESIGNER.name}
+          </a>
         </div>
 
         <div className={styles.bottom}>
