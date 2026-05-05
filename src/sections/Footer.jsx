@@ -133,17 +133,6 @@ export default function Footer() {
               気になる点はお問い合わせください。
             </p>
 
-            <a
-              href="#inquiry"
-              className={styles.contactLink}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo("inquiry");
-              }}
-            >
-              INQUIRY
-              <span aria-hidden="true">↗</span>
-            </a>
           </div>
         </div>
 
