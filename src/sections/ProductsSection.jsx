@@ -1,0 +1,28 @@
+import styles from "./ProductsSection.module.css";
+
+const SECTION_ID = "catalog";
+const SECTION_LABEL_ID = "catalog-heading";
+
+export default function ProductsSection({ children }) {
+  return (
+    <section
+      id={SECTION_ID}
+      className={styles.productsSection}
+      aria-labelledby={SECTION_LABEL_ID}
+    >
+      <div className={styles.inner}>
+        <h2 id={SECTION_LABEL_ID} className={styles.srOnly}>
+          Catalog
+        </h2>
+
+        <div className={styles.band} aria-hidden="true">
+          <span className={styles.bandLetter}>C</span>
+        </div>
+
+        <div className={styles.stack}>{children}</div>
+
+        <div className={styles.bottomLine} aria-hidden="true" />
+      </div>
+    </section>
+  );
+}

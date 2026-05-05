@@ -1,0 +1,528 @@
+/* Products.module.css */
+
+/* =========================
+   Base
+   ========================= */
+
+.products{
+  position: relative;
+  min-width: 0;
+}
+
+/* 上段メタ */
+.meta{
+  margin: 0 0 clamp(20px, 2.8vw, 34px);
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(var(--hare-muted), .88);
+  white-space: nowrap;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================
+   Rows / Grid
+   ========================= */
+
+.rows{
+  display: grid;
+  gap: clamp(20px, 2.8vw, 36px);
+  min-width: 0;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.9vw, 24px);
+  align-items: start;
+  min-width: 0;
+}
+
+/* 2段の間に“見開き”の構造線 */
+.rowLine{
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--hare-line), .04) 0%,
+      rgba(var(--hare-line), .14) 18%,
+      rgba(var(--hare-line), .10) 72%,
+      rgba(var(--hare-line), .03) 100%
+    );
+}
+
+/* =========================
+   Card
+   ========================= */
+
+.card{
+  min-width: 0;
+}
+
+.product{
+  width: 100%;
+  min-width: 0;
+
+  display: block;
+  color: inherit;
+}
+
+/* フォーカスは購入ボタンに入った時、写真側にも反応させる */
+.card:focus-within .media{
+  outline: 1px solid rgba(var(--hare-accent), .42);
+  outline-offset: 5px;
+}
+
+/* =========================
+   Image
+   ========================= */
+
+.media{
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(var(--hare-line), .04);
+  outline: 1px solid rgba(var(--hare-line), .10);
+  outline-offset: -1px;
+
+  aspect-ratio: 4 / 5.68;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 写真を少しだけ誌面に馴染ませる薄膜 */
+.media::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(var(--hare-bg), .08) 0%,
+      rgba(var(--hare-bg), 0) 42%,
+      rgba(var(--hare-line), .05) 100%
+    );
+
+  opacity: .72;
+}
+
+.image{
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+
+  filter: saturate(.97) contrast(1.01);
+  transform: scale(1.001);
+
+  transition:
+    transform .72s cubic-bezier(.22, 1, .36, 1),
+    filter .72s cubic-bezier(.22, 1, .36, 1),
+    opacity .28s ease;
+}
+
+@media (hover:hover){
+  .card:hover .image{
+    transform: scale(1.026);
+    filter: saturate(.94) contrast(1.02);
+    opacity: .96;
+  }
+}
+
+/* =========================
+   Info
+   ========================= */
+
+.info{
+  padding-top: 13px;
+}
+
+.row1{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.no{
+  flex: 0 0 auto;
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .18em;
+  color: rgba(var(--hare-muted), .92);
+  font-variant-numeric: tabular-nums;
+}
+
+.price{
+  flex: 0 0 auto;
+
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: .04em;
+  color: rgba(var(--hare-ink), .84);
+  font-variant-numeric: tabular-nums;
+}
+
+.name{
+  margin: 11px 0 0;
+
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.25;
+  letter-spacing: .04em;
+  color: rgba(var(--hare-ink), .93);
+}
+
+.jp{
+  margin: 7px 0 0;
+
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: .02em;
+  color: rgba(var(--hare-muted), .84);
+}
+
+/* =========================
+   Buy Button
+   ========================= */
+
+.buy{
+  appearance: none;
+  border: 0;
+  background: transparent;
+
+  margin: 15px 0 0;
+  padding: 0 0 9px;
+
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+
+  position: relative;
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-ink), .82);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    color .22s ease,
+    transform .22s cubic-bezier(.22, 1, .36, 1);
+}
+
+.buy::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 1px;
+  background: rgba(var(--hare-line), .16);
+
+  transform-origin: left;
+  transform: scaleX(.74);
+
+  transition:
+    transform .24s cubic-bezier(.22, 1, .36, 1),
+    background .24s ease;
+}
+
+.buy span:last-child{
+  display: inline-block;
+  transform: translateY(-1px);
+  transition: transform .24s cubic-bezier(.22, 1, .36, 1);
+}
+
+.buy:focus-visible{
+  outline: 1px solid rgba(var(--hare-accent), .38);
+  outline-offset: 6px;
+}
+
+@media (hover:hover){
+  .buy:hover{
+    color: rgba(var(--hare-ink), .98);
+    transform: translateY(-1px);
+  }
+
+  .buy:hover::after{
+    transform: scaleX(1);
+    background: rgba(var(--hare-line), .32);
+  }
+
+  .buy:hover span:last-child{
+    transform: translate(3px, -1px);
+  }
+}
+
+/* =========================
+   More
+   ========================= */
+
+.moreRow{
+  margin-top: clamp(26px, 3.4vw, 46px);
+  display: flex;
+  justify-content: center;
+}
+
+.more{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  margin: 0;
+  padding: 0 0 10px;
+
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+
+  position: relative;
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(var(--hare-ink), .78);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.more::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 1px;
+  background: rgba(var(--hare-line), .16);
+
+  transform-origin: left;
+  transform: scaleX(.78);
+
+  transition:
+    transform .24s cubic-bezier(.22, 1, .36, 1),
+    background .24s ease;
+}
+
+.moreIcon{
+  display: inline-block;
+  transform: translateY(-1px);
+  transition: transform .24s cubic-bezier(.22, 1, .36, 1);
+}
+
+.more:focus-visible{
+  outline: 1px solid rgba(var(--hare-accent), .38);
+  outline-offset: 6px;
+}
+
+@media (hover:hover){
+  .more:hover::after{
+    transform: scaleX(1);
+    background: rgba(var(--hare-line), .30);
+  }
+
+  .more:hover .moreIcon{
+    transform: translate(3px, -1px);
+  }
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (min-width: 1280px){
+  .media{
+    aspect-ratio: 4 / 5.82;
+  }
+}
+
+@media (max-width: 980px){
+  .meta{
+    margin-bottom: 22px;
+    white-space: normal;
+  }
+
+  .rows{
+    gap: 26px;
+  }
+
+  .grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(18px, 4.4vw, 28px) clamp(14px, 4vw, 22px);
+  }
+
+  .rowLine{
+    margin: 2px 0;
+  }
+
+  .media{
+    aspect-ratio: 4 / 5.42;
+  }
+
+  .info{
+    padding-top: 12px;
+  }
+
+  .buy{
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 560px){
+  .grid{
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .rows{
+    gap: 30px;
+  }
+
+  .media{
+    aspect-ratio: 4 / 5.18;
+  }
+
+  .name{
+    font-size: 15px;
+  }
+
+  .jp{
+    font-size: 12px;
+  }
+
+  .buy{
+    margin-top: 13px;
+    letter-spacing: .13em;
+  }
+}
+
+/* =========================
+   Motion Safe
+   ========================= */
+
+@media (prefers-reduced-motion: reduce){
+  .image,
+  .buy,
+  .buy::after,
+  .buy span:last-child,
+  .more::after,
+  .moreIcon{
+    transition: none !important;
+  }
+
+  .card:hover .image,
+  .buy:hover,
+  .buy:hover span:last-child,
+  .more:hover .moreIcon{
+    transform: none !important;
+  }
+}
+.buy{
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 14px;
+  min-height: 32px;
+  padding: 0 15px;
+
+  border: 1px solid rgba(var(--hare-line), .16);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(var(--hare-surface), .62),
+      rgba(var(--hare-bg), .38)
+    );
+
+  color: rgba(var(--hare-ink), .82);
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .08em;
+
+  cursor: pointer;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+
+  box-shadow:
+    0 8px 20px rgba(20, 24, 28, .035),
+    inset 0 1px 0 rgba(255, 255, 255, .62);
+
+  transition:
+    color .24s ease,
+    border-color .24s ease,
+    background .24s ease,
+    box-shadow .24s ease,
+    transform .24s cubic-bezier(.22, 1, .36, 1);
+}
+
+.buy span{
+  position: relative;
+  z-index: 1;
+}
+
+.buy::before{
+  content: "";
+  position: absolute;
+  inset: 1px;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, .42),
+      rgba(255, 255, 255, 0) 58%
+    );
+
+  opacity: .7;
+}
+
+.buy::after{
+  content: none !important;
+}
+
+@media (hover:hover){
+  .buy:hover{
+    color: rgba(var(--hare-ink), .96);
+    border-color: rgba(var(--hare-line), .28);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--hare-surface), .86),
+        rgba(var(--hare-bg), .58)
+      );
+
+    box-shadow:
+      0 12px 28px rgba(20, 24, 28, .055),
+      inset 0 1px 0 rgba(255, 255, 255, .74);
+
+    transform: translate3d(0, -1px, 0);
+  }
+}
+
+.buy:active{
+  transform: translate3d(0, 0, 0);
+}
+
+.buy:focus-visible{
+  outline: 1px solid rgba(var(--hare-line), .36);
+  outline-offset: 5px;
+}

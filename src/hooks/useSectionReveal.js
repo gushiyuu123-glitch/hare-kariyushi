@@ -1,0 +1,1 @@
+export { useReveal as useSectionReveal } from "./useReveal";
