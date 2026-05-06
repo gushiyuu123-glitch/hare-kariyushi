@@ -4,16 +4,13 @@ import Reveal from "../components/Reveal";
 import reveal from "../styles/SectionReveal.module.css";
 import styles from "./Collection.module.css";
 
-/*
-  次セクションのID。
-  Catalogセクションのidが "Products" のままなら、ここを "Products" に変更。
-*/
 const NEXT_SECTION_ID = "catalog";
 
+/* 役割：Collection = この夏の気分（編集） */
 const POINTS = [
-  "軽やかで、長時間でも心地いい着用感",
-  "街でも旅先でもなじむ、控えめな上品さ",
-  "涼しく見えて、きちんと見える夏の一枚",
+  "風が抜ける、涼感のある織り",
+  "汗ばむ日でも、肌に張りつきにくい",
+  "白・藍・砂の3トーンで、夏を静かに整える",
 ];
 
 const COLLECTION_IMAGES = [
@@ -65,7 +62,12 @@ export default function Collection() {
       aria-label="HARE collection"
     >
       <div className={styles.inner}>
-        <Reveal as="p" className={styles.runningHead} delay={0} direction="still">
+        <Reveal
+          as="p"
+          className={styles.runningHead}
+          delay={0}
+          direction="still"
+        >
           SELECTED SUMMER EDIT / HARE
         </Reveal>
 
@@ -74,11 +76,11 @@ export default function Collection() {
             <Reveal as="h2" className={styles.title} delay={80} direction="deep">
               風が通る。
               <br />
-              なのに、きちんと見える。
+              夏の気分を、<br />軽く。
             </Reveal>
 
             <Reveal as="p" className={styles.lead} delay={180}>
-              暑い日ほど、差が出るかりゆしを。
+              暑い日ほど、装いの“整い”が残るものを。
             </Reveal>
 
             <Reveal as="ul" className={styles.points} delay={260}>
@@ -87,10 +89,14 @@ export default function Collection() {
               ))}
             </Reveal>
 
-            <Reveal as="p" className={styles.footLink} delay={360} direction="still">
+            <Reveal
+              as="p"
+              className={styles.footLink}
+              delay={360}
+              direction="still"
+            >
               <a className={styles.footAnchor} href={`#${NEXT_SECTION_ID}`}>
-                <span className={styles.footText}>View catalog</span>
-          
+                <span className={styles.footText}>Catalog</span>
               </a>
             </Reveal>
           </header>
@@ -125,7 +131,12 @@ export default function Collection() {
           </div>
         </div>
 
-        <Reveal as="div" className={styles.bottomLine} delay={420} direction="still" />
+        <Reveal
+          as="div"
+          className={styles.bottomLine}
+          delay={420}
+          direction="still"
+        />
       </div>
     </section>
   );

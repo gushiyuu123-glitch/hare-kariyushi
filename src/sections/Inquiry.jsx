@@ -170,30 +170,33 @@ export default function Inquiry() {
     >
       <div className={styles.inner}>
         <Reveal as="p" className={styles.meta} delay={0} direction="still">
-          INQUIRY / CONTACT
+          INQUIRY / QUICK CHECK
         </Reveal>
 
         <div className={styles.frame}>
           <div className={styles.copy}>
-            <Reveal
-              as="h2"
-              id="inquiry-title"
-              className={styles.title}
-              delay={90}
-              direction="deep"
-            >
-              必要なときだけ、
-              <br />
-              連絡できる。
-            </Reveal>
-
+<Reveal
+  as="h2"
+  id="inquiry-title"
+  className={styles.title}
+  delay={90}
+  direction="deep"
+>
+  最後の疑問を、
+  <br />
+  ここで。
+</Reveal>
             <Reveal as="p" className={styles.lead} delay={190}>
-              在庫、サイズ感、取り扱い店舗について。
+              サイズ・在庫・取り扱い店舗。
               <br />
               確認だけでも構いません。
             </Reveal>
 
-            <Reveal as="p" className={styles.hint} delay={270} direction="still">
+            <Reveal as="p" className={styles.hint} delay={260} direction="still">
+              SIZE ADVICE / STOCK / STORES
+            </Reveal>
+
+            <Reveal as="p" className={styles.hint} delay={320} direction="still">
               返信が必要な場合は、メールアドレスをご入力ください。
             </Reveal>
           </div>
@@ -296,7 +299,7 @@ export default function Inquiry() {
                   className={styles.textarea}
                   rows={6}
                   value={form.message}
-                  placeholder="確認したい内容をご入力ください。"
+                  placeholder="例：MとLで迷っています。身長/体型/普段のサイズ感を添えてください。"
                   onChange={(event) => setField("message", event.target.value)}
                   onBlur={() => setTouchedField("message")}
                   aria-invalid={hasFieldError("message") ? "true" : "false"}
@@ -330,11 +333,7 @@ export default function Inquiry() {
                   <span aria-hidden="true">→</span>
                 </button>
 
-                <p
-                  className={styles.status}
-                  aria-live="polite"
-                  data-type={status.type}
-                >
+                <p className={styles.status} aria-live="polite" data-type={status.type}>
                   {status.text}
                 </p>
               </div>

@@ -8,10 +8,10 @@ const VOICES = [
   {
     no: "01",
     quote: [
-      "涼しいのに、だらしなく見えない。",
-      "袖を通した瞬間に“整う”感じがある。",
+      "Mサイズ・172cm。着たまま会議に出られる。",
+      "洗濯を繰り返しても、へたらない。",
     ],
-    meta: "OFFICE / OKINAWA",
+    meta: "NAHA / WEEK 5",
   },
   {
     no: "02",
@@ -90,21 +90,21 @@ export default function Voices() {
         </div>
 
         <header className={styles.header}>
-          <Reveal
-            as="h2"
-            id="voices-title"
-            className={styles.title}
-            delay={90}
-            direction="deep"
-          >
-            「買ってよかった」は、
-            <span className={styles.titleLine}>大きな声じゃなくていい。</span>
-          </Reveal>
+<Reveal
+  as="h2"
+  id="voices-title"
+  className={styles.title}
+  delay={90}
+  direction="deep"
+>
+  着た人の声が、
+  <span className={styles.titleLine}>決め手になる。</span>
+</Reveal>
 
-          <Reveal as="p" className={styles.lead} delay={190}>
-            着心地と印象のズレが少ないこと。
-            その静かな一致が、選ばれる理由になります。
-          </Reveal>
+<Reveal as="p" className={styles.lead} delay={190}>
+  着心地と印象のズレが少ないこと。
+  その一致が、選ばれる理由になります。
+</Reveal>
 
           <Reveal as="p" className={styles.sign} delay={290} direction="still">
             — QUIET TRUST

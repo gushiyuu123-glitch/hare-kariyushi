@@ -18,6 +18,7 @@ export default function ProductsSectionSp({ children }) {
         {/* SPは箱UIにしない。編集の“見出し”だけ置く */}
         <div className={styles.band} aria-hidden="true">
           <span className={styles.bandWord}>CATALOG</span>
+          <span className={styles.bandNote}>LIMITED PRODUCTION</span>
         </div>
 
         <div className={styles.stack}>{children}</div>

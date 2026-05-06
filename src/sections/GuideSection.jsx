@@ -17,6 +17,7 @@ export default function GuideSection({ children }) {
 
         <div className={styles.band} aria-hidden="true">
           <span className={styles.bandLetter}>G</span>
+          <span className={styles.bandNote}>HOW TO BUY</span>
         </div>
 
         <div className={styles.stack}>{children}</div>

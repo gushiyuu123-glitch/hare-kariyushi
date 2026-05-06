@@ -5,9 +5,15 @@ import styles from "./HeroSp.module.css";
 const HERO_IMG = "/images/hare-hero-shirt.jpeg";
 const WORDMARK_SVG = "/images/HARE.svg";
 
+const COPY = {
+  kicker: "KARIYUSHI WEAR / OKINAWA",
+  sub: "SELECTED STOCKISTS",
+  lead: "仕事にも、街にも。沖縄の暑さを、風が通る一枚で。",
+};
+
 const NAV_ITEMS = [
   { id: "collection", label: "Collection", delay: "520ms" },
-{ id: "catalog", label: "Catalog", delay: "600ms" },
+  { id: "catalog", label: "Catalog", delay: "600ms" },
   { id: "guide", label: "Guide", delay: "680ms" },
   { id: "stockists", label: "Stockists", delay: "760ms" },
 ];
@@ -52,11 +58,7 @@ export default function HeroSp() {
     }
 
     (async () => {
-      await Promise.all([
-        preloadImage(WORDMARK_SVG),
-        preloadImage(HERO_IMG),
-      ]);
-
+      await Promise.all([preloadImage(WORDMARK_SVG), preloadImage(HERO_IMG)]);
       if (!alive) return;
 
       setSheenReady(true);
@@ -96,7 +98,7 @@ export default function HeroSp() {
       <div className={styles.inner}>
         <div className={styles.left}>
           <p className={styles.kicker} data-intro style={{ "--d": "0ms" }}>
-            KARIYUSHI WEAR / OKINAWA
+            {COPY.kicker}
           </p>
 
           <h1
@@ -119,11 +121,11 @@ export default function HeroSp() {
           </h1>
 
           <p className={styles.sub} data-intro style={{ "--d": "240ms" }}>
-            SELECTED STOCKISTS
+            {COPY.sub}
           </p>
 
           <p className={styles.lead} data-intro style={{ "--d": "340ms" }}>
-            沖縄の暑さを、風が通る一枚で。
+            {COPY.lead}
           </p>
 
           <nav className={styles.menu} aria-label="HARE navigation">
@@ -137,7 +139,6 @@ export default function HeroSp() {
                 onClick={() => scrollTo(item.id)}
               >
                 <span className={styles.menuLabel}>{item.label}</span>
-
               </button>
             ))}
           </nav>

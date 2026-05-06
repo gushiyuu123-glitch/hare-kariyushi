@@ -6,10 +6,11 @@ import styles from "./CollectionSp.module.css";
 
 const NEXT_SECTION_ID = "catalog";
 
+/* 役割：Collection = この夏の気分（編集） */
 const POINTS = [
-  "軽やかで、長時間でも心地いい着用感",
-  "街でも旅先でもなじむ、控えめな上品さ",
-  "涼しく見えて、きちんと見える夏の一枚",
+  "風が抜ける、涼感のある織り",
+  "汗ばむ日でも、肌に張りつきにくい",
+  "白・藍・砂の3トーンで、夏を静かに整える",
 ];
 
 const COLLECTION_IMAGES = [
@@ -67,11 +68,11 @@ export default function CollectionSp() {
             <Reveal as="h2" className={styles.title} delay={80} direction="deep">
               風が通る。
               <br />
-              なのに、きちんと見える。
+              夏の気分を、軽く。
             </Reveal>
 
             <Reveal as="p" className={styles.lead} delay={180}>
-              暑い日ほど、差が出るかりゆしを。
+              暑い日ほど、装いの“整い”が残るものを。
             </Reveal>
 
             <Reveal as="ul" className={styles.points} delay={260}>
@@ -80,11 +81,11 @@ export default function CollectionSp() {
               ))}
             </Reveal>
 
-         <Reveal as="p" className={styles.footLink} delay={360} direction="still">
-  <a className={styles.footAnchor} href={`#${NEXT_SECTION_ID}`}>
-    <span className={styles.footText}>Catalog</span>
-  </a>
-</Reveal>
+            <Reveal as="p" className={styles.footLink} delay={360} direction="still">
+              <a className={styles.footAnchor} href={`#${NEXT_SECTION_ID}`}>
+                <span className={styles.footText}>Catalog</span>
+              </a>
+            </Reveal>
           </header>
 
           <div className={styles.stage} aria-label="Collection gallery">

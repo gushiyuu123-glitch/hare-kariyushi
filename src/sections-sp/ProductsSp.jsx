@@ -112,8 +112,9 @@ function ProductCard({ item, index, onAdd }) {
           type="button"
           className={styles.buy}
           onClick={() => onAdd(item)}
+          aria-label={`${item.name} をバッグに追加`}
         >
-          <span className={styles.buyLabel}>購入する</span>
+          <span className={styles.buyLabel}>BAGに入れる</span>
           <span className={styles.buyMark} aria-hidden="true">
             +
           </span>
@@ -132,6 +133,7 @@ export default function ProductsSp({ onAddToCart }) {
 
   return (
     <div
+      id="catalog"
       ref={ref}
       className={`${styles.products} ${reveal.reveal}`}
       data-show={show ? "true" : "false"}
@@ -140,6 +142,8 @@ export default function ProductsSp({ onAddToCart }) {
       <div className={styles.metaRow}>
         <Reveal as="p" className={styles.meta} delay={0} direction="still">
           08 ITEMS / SUMMER EDIT
+          <br />
+          S–XL / LIMITED PRODUCTION
         </Reveal>
 
         <Reveal as="p" className={styles.hint} delay={80} direction="still">

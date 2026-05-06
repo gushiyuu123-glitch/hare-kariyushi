@@ -6,22 +6,22 @@ import styles from "./Guide.module.css";
 
 const GUIDE_ITEMS = [
   {
+    id: "size",
+    en: "SIZE",
+    jp: "サイズ",
+    body: "サイズ表は各商品の説明に記載しています。迷った場合は“普段のサイズ感”を添えてご相談ください。",
+  },
+  {
     id: "shipping",
     en: "SHIPPING",
     jp: "発送",
-    body: "ご注文から通常 2〜5 営業日を目安に発送します。離島・混雑時は前後する場合があります。",
+    body: "ご注文から通常 2〜5 営業日を目安に発送します。離島・混雑時は前後する場合があります。サイズ違いは到着後7日以内に承ります。",
   },
   {
     id: "payment",
     en: "PAYMENT",
     jp: "お支払い",
     body: "主要なお支払い方法に対応。領収書が必要な場合はお問い合わせでご相談ください。",
-  },
-  {
-    id: "size",
-    en: "SIZE",
-    jp: "サイズ",
-    body: "サイズ表は各商品の説明に記載しています。迷った場合は“普段のサイズ感”を添えてご相談ください。",
   },
   {
     id: "care",
@@ -62,7 +62,7 @@ export default function Guide() {
           </Reveal>
 
           <Reveal as="p" className={styles.lead} delay={190}>
-            送料や支払い、サイズ感。気になる点は先に消しておきます。
+            サイズ、配送、支払い。気になる点は先に消しておきます。
           </Reveal>
         </header>
 
@@ -83,7 +83,6 @@ export default function Guide() {
           <span className={styles.supportText}>
             サイズや在庫で迷った場合は、お問い合わせからご相談ください。
           </span>
-
         </Reveal>
       </div>
     </div>

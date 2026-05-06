@@ -86,6 +86,8 @@ function ProductCard({ item, index, onAdd }) {
             src={item.img}
             alt={`${item.name} / ${item.jp}`}
             decoding="async"
+            loading="lazy"
+            draggable="false"
           />
         </div>
 
@@ -102,8 +104,9 @@ function ProductCard({ item, index, onAdd }) {
             type="button"
             className={styles.buy}
             onClick={() => onAdd(item)}
+            aria-label={`${item.name} をバッグに追加`}
           >
-            <span>購入する</span>
+            <span>BAGに入れる</span>
           </button>
         </div>
       </div>
@@ -131,6 +134,8 @@ export default function Products({ onAddToCart }) {
     >
       <Reveal as="p" className={styles.meta} delay={0} direction="still">
         08 ITEMS / SUMMER EDIT
+        <br />
+        S–XL / LIMITED PRODUCTION
       </Reveal>
 
       <div className={styles.rows} aria-label="Catalog rows">

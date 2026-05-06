@@ -39,7 +39,13 @@ export default function ConceptSp() {
 
       <div className={styles.content}>
         <div className={styles.copy}>
-          <Reveal as="h2" id="concept-title" className={styles.title} delay={80} direction="deep">
+          <Reveal
+            as="h2"
+            id="concept-title"
+            className={styles.title}
+            delay={80}
+            direction="deep"
+          >
             涼感、端正。
           </Reveal>
 
@@ -51,10 +57,12 @@ export default function ConceptSp() {
           <Reveal as="p" className={styles.body} delay={260}>
             襟元の立ち上がり、ボタンの間隔、縫いのライン。
             近づくほど、端正さの理由が見えてくる。
-            夏の一枚を、軽やかに、品よく。
+            夏の一枚を、軽やかに、端正に。
           </Reveal>
 
           <Reveal as="p" className={styles.bodyMuted} delay={340}>
+            少数で仕立て、最後は手で整える。
+            <br />
             派手に語らない。けれど、着た瞬間に違いが残る。
           </Reveal>
 
@@ -68,7 +76,13 @@ export default function ConceptSp() {
         </Reveal>
       </div>
 
-      <Reveal as="div" className={styles.bottomLine} delay={520} direction="still" aria-hidden="true" />
+      <Reveal
+        as="div"
+        className={styles.bottomLine}
+        delay={520}
+        direction="still"
+        aria-hidden="true"
+      />
     </section>
   );
 }

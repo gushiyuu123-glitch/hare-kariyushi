@@ -228,3 +228,17 @@
     transform: none;
   }
 }
+.bandNote{
+  display: inline-flex;
+  align-items: baseline;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: rgba(var(--hare-muted), .72);
+
+  transform: translateY(1px);
+}

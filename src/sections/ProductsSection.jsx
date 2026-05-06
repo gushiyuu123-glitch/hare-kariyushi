@@ -17,6 +17,7 @@ export default function ProductsSection({ children }) {
 
         <div className={styles.band} aria-hidden="true">
           <span className={styles.bandLetter}>C</span>
+          <span className={styles.bandNote}>LIMITED PRODUCTION</span>
         </div>
 
         <div className={styles.stack}>{children}</div>

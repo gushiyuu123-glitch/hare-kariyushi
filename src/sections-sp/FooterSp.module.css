@@ -448,3 +448,18 @@
     transform: none;
   }
 }
+.statement{
+  margin: 0;
+  max-width: 18ch;
+
+  font-size: clamp(24px, 2.4vw, 42px);
+
+  /* H1系の統一感 */
+  line-height: 1.18;
+  letter-spacing: var(--ls-title, -.035em);
+  font-weight: var(--w-title, 520);
+  color: rgba(var(--hare-ink), .93);
+
+  text-align: right;
+  text-wrap: balance;
+}

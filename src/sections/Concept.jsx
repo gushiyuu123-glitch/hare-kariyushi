@@ -57,10 +57,12 @@ export default function Concept() {
           <Reveal as="p" className={styles.body} delay={260}>
             襟元の立ち上がり、ボタンの間隔、縫いのライン。
             近づくほど、端正さの理由が見えてくる。
-            夏の一枚を、軽やかに、品よく。
+            夏の一枚を、軽やかに、端正に。
           </Reveal>
 
           <Reveal as="p" className={styles.bodyMuted} delay={340}>
+            少数で仕立て、最後は手で整える。
+            <br />
             派手に語らない。けれど、着た瞬間に違いが残る。
           </Reveal>
 

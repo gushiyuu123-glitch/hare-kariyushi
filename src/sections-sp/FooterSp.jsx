@@ -96,11 +96,11 @@ export default function FooterSp() {
           </div>
 
           <div className={styles.statementBlock}>
-            <p className={styles.statement}>
-              涼しく、端正に。
-              <br />
-              沖縄の夏を、静かに整える一枚。
-            </p>
+<p className={styles.statement}>
+  WEEKDAY SUMMER.
+  <br />
+  OKINAWA EDIT.
+</p>
           </div>
         </Reveal>
 

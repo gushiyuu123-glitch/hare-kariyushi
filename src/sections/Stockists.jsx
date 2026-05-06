@@ -64,13 +64,13 @@ export default function Stockists() {
               delay={90}
               direction="deep"
             >
-              実在する場所で、
+              店頭で、
               <br />
               確かめられる。
             </Reveal>
 
             <Reveal as="p" className={styles.lead} delay={190}>
-              取り扱い店舗では、生地感や襟元の立ち上がりをそのまま確認できます。
+              取扱店では、生地感や襟元の立ち上がりをそのまま確認できます。
               在庫は変動するため、来店前にご確認ください。
             </Reveal>
 
@@ -99,10 +99,7 @@ export default function Stockists() {
             >
               <dl className={styles.table}>
                 {STOCKISTS.map((stockist, index) => (
-                  <div
-                    className={styles.row}
-                    key={`${stockist.area}-${index}`}
-                  >
+                  <div className={styles.row} key={`${stockist.area}-${index}`}>
                     <dt className={styles.left}>
                       <span className={styles.area}>{stockist.area}</span>
                       <span className={styles.name}>{stockist.name}</span>
