@@ -1,0 +1,355 @@
+/* ProductsSp.module.css */
+
+.products{
+  position: relative;
+  min-width: 0;
+}
+
+/* meta */
+.metaRow{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+
+  margin: 0 0 16px;
+}
+
+.meta{
+  margin: 0;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: rgba(var(--hare-muted), .88);
+  font-variant-numeric: tabular-nums;
+}
+
+.hint{
+  margin: 0;
+
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: rgba(var(--hare-muted), .66);
+}
+
+/* grid : SPは2カラムがEC感 */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 14px;
+  min-width: 0;
+}
+
+/* card（角丸・影は盛らない） */
+.card{
+  min-width: 0;
+}
+
+/* media */
+.media{
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(var(--hare-line), .04);
+  outline: 1px solid rgba(var(--hare-line), .10);
+  outline-offset: -1px;
+
+  aspect-ratio: 4 / 5.3;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* “紙膜”で写真を上品に */
+.media::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(var(--hare-bg), .10) 0%,
+      rgba(var(--hare-bg), 0) 44%,
+      rgba(var(--hare-line), .06) 100%
+    );
+
+  opacity: .70;
+}
+
+.image{
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+
+  filter: saturate(.98) contrast(1.01);
+  transform: scale(1.001);
+
+  transition:
+    transform .66s cubic-bezier(.22, 1, .36, 1),
+    filter .66s cubic-bezier(.22, 1, .36, 1),
+    opacity .22s ease;
+}
+
+@media (hover:hover){
+  .card:hover .image{
+    transform: scale(1.02);
+    filter: saturate(.96) contrast(1.02);
+    opacity: .96;
+  }
+}
+
+/* info */
+.info{
+  padding-top: 10px;
+}
+
+.row1{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.no{
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  color: rgba(var(--hare-muted), .88);
+  font-variant-numeric: tabular-nums;
+}
+
+.price{
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .04em;
+  color: rgba(var(--hare-ink), .86);
+  font-variant-numeric: tabular-nums;
+}
+
+.name{
+  margin: 10px 0 0;
+
+  font-size: 13px;
+  line-height: 1.22;
+  letter-spacing: .04em;
+
+  color: rgba(var(--hare-ink), .94);
+}
+
+.jp{
+  margin: 6px 0 0;
+
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: .02em;
+
+  color: rgba(var(--hare-muted), .84);
+}
+
+/* buy : ECっぽく “触れる幅” を作る */
+.buy{
+  appearance: none;
+  border: 1px solid rgba(var(--hare-line), .14);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(var(--hare-surface), .58),
+      rgba(var(--hare-bg), .34)
+    );
+
+  margin: 12px 0 0;
+  width: 100%;
+  min-height: 38px;
+  padding: 0 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  color: rgba(var(--hare-ink), .86);
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .10em;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  box-shadow:
+    0 10px 24px rgba(20, 24, 28, .035),
+    inset 0 1px 0 rgba(255, 255, 255, .55);
+
+  transition:
+    color .22s ease,
+    border-color .22s ease,
+    background .22s ease,
+    box-shadow .22s ease,
+    transform .22s cubic-bezier(.22, 1, .36, 1);
+}
+
+.buyMark{
+  font-size: 14px;
+  line-height: 1;
+  opacity: .72;
+  transform: translateY(-1px);
+}
+
+@media (hover:hover){
+  .buy:hover{
+    color: rgba(var(--hare-ink), .96);
+    border-color: rgba(var(--hare-line), .26);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(var(--hare-surface), .78),
+        rgba(var(--hare-bg), .48)
+      );
+
+    box-shadow:
+      0 14px 30px rgba(20, 24, 28, .05),
+      inset 0 1px 0 rgba(255, 255, 255, .68);
+
+    transform: translate3d(0, -1px, 0);
+  }
+}
+
+.buy:active{
+  transform: translate3d(0, 0, 0);
+}
+
+.buy:focus-visible{
+  outline: 1px solid rgba(var(--hare-line), .34);
+  outline-offset: 5px;
+}
+
+/* more */
+.moreRow{
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.more{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0 0 10px;
+
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-ink), .78);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  position: relative;
+}
+
+.more::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 1px;
+  background: rgba(var(--hare-line), .14);
+  transform-origin: left;
+  transform: scaleX(.78);
+
+  transition:
+    transform .22s cubic-bezier(.22, 1, .36, 1),
+    background .22s ease;
+}
+
+.moreIcon{
+  display: inline-block;
+  transform: translateY(-1px);
+  transition: transform .22s cubic-bezier(.22, 1, .36, 1);
+}
+
+@media (hover:hover){
+  .more:hover::after{
+    transform: scaleX(1);
+    background: rgba(var(--hare-line), .26);
+  }
+  .more:hover .moreIcon{
+    transform: translate(3px, -1px);
+  }
+}
+
+/* bottom line */
+.bottomLine{
+  margin-top: 24px;
+  height: 1px;
+  background: rgba(var(--hare-line), .10);
+}
+
+/* very small devices -> 1 column */
+@media (max-width: 360px){
+  .grid{
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .image,
+  .buy,
+  .more,
+  .more::after,
+  .moreIcon{
+    transition: none !important;
+  }
+  .card:hover .image,
+  .buy:hover,
+  .more:hover .moreIcon{
+    transform: none !important;
+  }
+}
+/* ProductsSp.module.css 追記 */
+.card{
+  position: relative;
+}
+
+.card:active{
+  opacity: .96;
+  transform: translate3d(0, 1px, 0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .card:active{ transform: none; }
+}
+/* ProductsSp.module.css 追記 */
+.buy{
+  border-radius: 0; /* 角丸禁止で誌面感を維持 */
+}
+
+.buy:active{
+  transform: translate3d(0, 0, 0) scale(.99);
+  box-shadow:
+    0 8px 18px rgba(20, 24, 28, .03),
+    inset 0 1px 0 rgba(255, 255, 255, .48);
+}

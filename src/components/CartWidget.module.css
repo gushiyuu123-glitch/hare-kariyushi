@@ -24,6 +24,10 @@
   pointer-events: auto;
   margin-left: auto;
 
+  /* z-index制御（scrim事故回避） */
+  position: relative;
+  z-index: 2;
+
   min-width: 96px;
   min-height: 54px;
   padding: 10px 14px 11px;
@@ -98,7 +102,10 @@
 .scrim{
   position: fixed;
   inset: 0;
-  z-index: -1;
+
+  /* -1 をやめる（環境で背面に落ちる事故防止） */
+  z-index: 0;
+
   pointer-events: none;
 
   appearance: none;
@@ -134,6 +141,9 @@
   position: absolute;
   top: calc(100% + 12px);
   right: 0;
+
+  /* scrimより前 */
+  z-index: 1;
 
   width: 100%;
   padding: 20px 18px 18px;

@@ -1,0 +1,165 @@
+/* GuideSectionSp.module.css */
+
+.guideSection{
+  position: relative;
+  isolation: isolate;
+
+  background: rgb(var(--hare-bg, 246 244 240));
+  color: rgb(var(--hare-text, 22 22 22));
+
+  border-top: 1px solid rgba(var(--hare-line, 40 40 40), .10);
+  overflow-x: clip;
+
+  /* 右上MENUの被り回避（アンカー飛び先） */
+  scroll-margin-top: calc(64px + env(safe-area-inset-top));
+}
+
+@supports not (overflow: clip){
+  .guideSection{ overflow-x: hidden; }
+}
+
+/* Guideは“安心の紙面”：やわらかいが、盛らない */
+.guideSection::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 18% 0%,
+      rgba(var(--hare-surface, 255 255 255), .36) 0%,
+      rgba(var(--hare-bg, 246 244 240), 0) 36%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(var(--hare-surface, 255 255 255), .12) 0%,
+      rgba(var(--hare-bg, 246 244 240), 0) 26%,
+      rgba(var(--hare-bg, 246 244 240), 0) 78%,
+      rgba(var(--hare-surface, 255 255 255), .10) 100%
+    );
+}
+
+/* =========================
+   Inner (SP幅)
+   ========================= */
+
+.inner{
+  width: min(560px, 100%);
+  margin: 0 auto;
+
+  padding:
+    clamp(52px, 7.4vw, 78px)
+    20px
+    clamp(76px, 9.2vw, 112px);
+
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* =========================
+   Band (箱を捨てる)
+   ========================= */
+
+.band{
+  margin: 0 0 18px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.band::before{
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: rgba(var(--hare-line, 40 40 40), .12);
+}
+
+.bandWord{
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: rgba(var(--hare-muted, 120 120 120), .86);
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================
+   Stack
+   ========================= */
+
+.stack{
+  display: grid;
+  gap: clamp(42px, 9.8vw, 74px);
+  min-width: 0;
+}
+
+.stack > *{
+  min-width: 0;
+}
+
+/* =========================
+   Bottom
+   ========================= */
+
+.bottomLine{
+  position: relative;
+  margin-top: clamp(48px, 10vw, 84px);
+  height: 1px;
+
+  background: rgba(var(--hare-line, 40 40 40), .10);
+}
+
+.bottomLine::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 54px;
+  height: 1px;
+
+  background: rgba(var(--hare-line, 40 40 40), .18);
+}
+
+/* =========================
+   Screen Reader
+   ========================= */
+
+.srOnly{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================
+   Tiny devices
+   ========================= */
+
+@media (max-width: 360px){
+  .inner{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .band{ margin-bottom: 16px; }
+}
+
+/* =========================
+   Reduced motion
+   ========================= */
+
+@media (prefers-reduced-motion: reduce){
+  /* no-op */
+}

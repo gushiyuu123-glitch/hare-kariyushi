@@ -1,0 +1,243 @@
+/* VoicesSp.module.css */
+
+.voices{
+  position: relative;
+  min-width: 0;
+
+  /* SPは“章の中の小さなノート” */
+  padding-top: 6px;
+}
+
+/* catalog章の中では終端線を消す（ProductsSection側の余韻に任せる） */
+:global(#catalog) .voices .bottomLine{
+  display: none;
+}
+
+/* =========================
+   Meta (小さく、誌面っぽく)
+   ========================= */
+
+.meta{
+  margin: 0 0 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: rgba(var(--hare-muted), .82);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta::before{
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: rgba(var(--hare-line), .12);
+}
+
+/* =========================
+   Layout (SPは縦)
+   ========================= */
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  min-width: 0;
+}
+
+/* =========================
+   Header (小さく、先に読む)
+   ========================= */
+
+.header{
+  min-width: 0;
+}
+
+.title{
+  margin: 0;
+
+  font-size: clamp(22px, 6.6vw, 28px);
+  line-height: 1.28;
+  letter-spacing: -.03em;
+
+  color: rgba(var(--hare-ink), .94);
+  text-wrap: balance;
+}
+
+.titleLine{
+  display: block;
+  margin-top: 6px;
+
+  white-space: normal;
+}
+
+.lead{
+  margin: 12px 0 0;
+
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: .01em;
+
+  color: rgba(var(--hare-ink), .80);
+}
+
+.sign{
+  margin: 14px 0 0;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-muted), .80);
+}
+
+/* =========================
+   List
+   ========================= */
+
+.list{
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.item{
+  position: relative;
+  min-width: 0;
+
+  padding-top: 14px;
+}
+
+/* 基準線（静か） */
+.line{
+  display: block;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--hare-line), .16) 0%,
+      rgba(var(--hare-line), .10) 44%,
+      rgba(var(--hare-line), .03) 100%
+    );
+}
+
+/* =========================
+   Quote (SPは短く読む)
+   ========================= */
+
+.quote{
+  position: relative;
+
+  margin: 12px 0 0;
+  padding-left: 18px;
+
+  color: rgba(var(--hare-ink), .87);
+}
+
+.openMark{
+  position: absolute;
+  left: 0;
+  top: -.10em;
+
+  font-family: var(--ff-display);
+  font-size: 24px;
+  line-height: 1;
+
+  color: rgba(var(--hare-muted), .28);
+}
+
+.closeMark{
+  display: none;
+}
+
+.quoteBody{
+  display: block;
+
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: .015em;
+}
+
+/* SPは“2行をひと息で読む” */
+.quoteLine{
+  display: inline;
+}
+.quoteLine + .quoteLine::before{
+  content: " ";
+}
+
+/* =========================
+   Foot
+   ========================= */
+
+.foot{
+  margin: 12px 0 0;
+
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-muted), .86);
+}
+
+.no{
+  font-variant-numeric: tabular-nums;
+  opacity: .92;
+}
+
+.dot{
+  width: 18px;
+  height: 1px;
+
+  background: rgba(var(--hare-line), .13);
+  transform: translateY(-1px);
+}
+
+.note{
+  white-space: nowrap;
+  opacity: .92;
+}
+
+/* =========================
+   Bottom
+   ========================= */
+
+.bottomLine{
+  margin-top: 22px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--hare-line), .04),
+      rgba(var(--hare-line), .12),
+      rgba(var(--hare-line), .04)
+    );
+}
+
+/* small devices */
+@media (max-width: 360px){
+  .lead{ font-size: 12.5px; }
+  .quoteBody{ font-size: 12.5px; }
+  .note{ white-space: normal; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  /* no-op（hover/transform無し） */
+}

@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 
 const DIRECTIONS = new Set(["soft", "deep", "still"]);
 
@@ -13,6 +13,7 @@ const Reveal = forwardRef(function Reveal(
     as: Tag = "div",
     delay = 0,
     direction = "soft", // soft | deep | still
+    enabled = true,     // ← 追加：reveal無効化
     className = "",
     style,
     children,
@@ -22,16 +23,19 @@ const Reveal = forwardRef(function Reveal(
 ) {
   const safeDirection = DIRECTIONS.has(direction) ? direction : "soft";
 
+  // delayはデフォルト値、style側で "--d" を上書きできるようにする
+  const mergedStyle = useMemo(() => {
+    const base = { "--d": toDelayValue(delay) };
+    return style ? { ...base, ...style } : base;
+  }, [delay, style]);
+
   return (
     <Tag
       ref={ref}
-      data-reveal
-      data-dir={safeDirection}
+      {...(enabled ? { "data-reveal": "" } : {})}
+      data-dir={enabled ? safeDirection : undefined}
       className={className}
-      style={{
-        ...style,
-        "--d": toDelayValue(delay),
-      }}
+      style={mergedStyle}
       {...rest}
     >
       {children}

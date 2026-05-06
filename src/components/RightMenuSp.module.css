@@ -1,0 +1,241 @@
+.btn{
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
+  position: fixed;
+  top: calc(16px + env(safe-area-inset-top));
+  right: 18px;
+  z-index: 120;
+
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+
+  color: rgba(var(--hare-ink, 24 22 18), .88);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+
+  transition:
+    opacity .42s var(--ease),
+    transform .42s var(--ease),
+    color .24s ease;
+}
+
+.btn[data-hidden="true"]{
+  opacity: 0;
+  transform: translate3d(8px, -4px, 0);
+  pointer-events: none;
+}
+
+.word{
+  position: relative;
+  display: inline-block;
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.word::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 1px;
+
+  background: rgba(var(--hare-line, 40 40 40), .18);
+  transform-origin: right;
+  transform: scaleX(.42);
+
+  transition:
+    transform .28s cubic-bezier(.22, 1, .36, 1),
+    background .24s ease;
+}
+
+@media (hover:hover){
+  .btn:hover{
+    color: rgba(var(--hare-ink, 24 22 18), .98);
+  }
+
+  .btn:hover .word::after{
+    transform: scaleX(1);
+    background: rgba(var(--hare-line, 40 40 40), .28);
+  }
+}
+
+.btn:active{
+  opacity: .76;
+}
+
+.btn:focus-visible{
+  outline: 1px solid rgba(var(--hare-line, 40 40 40), .28);
+  outline-offset: 6px;
+}
+
+/* overlay */
+.overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity .22s ease;
+}
+
+.overlay[data-open="true"]{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.14);
+}
+
+/* panel */
+.panel{
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: min(320px, 88vw);
+  height: 100%;
+
+  background: rgba(246,244,240,.97);
+  border-left: 1px solid rgba(var(--hare-line, 40 40 40), .12);
+
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    16px
+    calc(18px + env(safe-area-inset-bottom));
+
+  transform: translate3d(12px, 0, 0);
+  opacity: 0;
+
+  transition:
+    transform .44s cubic-bezier(.22, 1, .36, 1),
+    opacity .28s ease;
+}
+
+.overlay[data-open="true"] .panel{
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(var(--hare-line, 40 40 40), .10);
+}
+
+.top{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.logo{
+  display: block;
+  width: 92px;
+  height: auto;
+  opacity: .86;
+}
+
+.close{
+  appearance: none;
+  border: 1px solid rgba(var(--hare-line, 40 40 40), .12);
+  background: transparent;
+
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(var(--hare-ink, 24 22 18), .72);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.list{
+  margin-top: 10px;
+  display: grid;
+}
+
+.item{
+  display: grid;
+  grid-template-columns: 30px 1fr 16px;
+  align-items: center;
+  column-gap: 14px;
+
+  min-height: 52px;
+  text-decoration: none;
+
+  color: rgba(var(--hare-ink, 24 22 18), .86);
+  border-bottom: 1px solid rgba(var(--hare-line, 40 40 40), .10);
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no{
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .16em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(var(--hare-muted, 120 120 120), .66);
+}
+
+.label{
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: .04em;
+}
+
+.arrow{
+  font-size: 12px;
+  line-height: 1;
+  opacity: .46;
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .btn,
+  .overlay,
+  .panel,
+  .word::after{
+    transition: none !important;
+  }
+
+  .panel{
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (min-width: 900px){
+  .btn,
+  .overlay{
+    display: none;
+  }
+}

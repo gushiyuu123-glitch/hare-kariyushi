@@ -1,30 +1,49 @@
-.reveal [data-reveal]{
-  opacity: 0;
-  transform: translateY(18px) scale(.995);
-  will-change: transform, opacity;
+.reveal{
+  --revealDur: 1.05s;
+  --revealEase: cubic-bezier(.22, 1, .36, 1);
 }
 
+/* base */
+.reveal [data-reveal]{
+  --y: 18px;
+  --s: .995;
+
+  opacity: 0;
+  transform: translate3d(0, var(--y), 0) scale(var(--s));
+  backface-visibility: hidden;
+}
+
+/* dir variants */
 .reveal [data-reveal][data-dir="deep"]{
-  transform: translateY(22px) scale(.992);
+  --y: 22px;
+  --s: .992;
 }
 
 .reveal [data-reveal][data-dir="still"]{
-  transform: translateY(12px) scale(.997);
+  --y: 12px;
+  --s: .997;
 }
 
+/* show */
 .reveal[data-show="true"] [data-reveal]{
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+
+  /* 表示中だけ will-change（重さ対策） */
+  will-change: transform, opacity;
+
   transition:
-    opacity 1.05s cubic-bezier(.22, 1, .36, 1) var(--d, 0ms),
-    transform 1.05s cubic-bezier(.22, 1, .36, 1) var(--d, 0ms);
+    opacity var(--revealDur) var(--revealEase) var(--d, 0ms),
+    transform var(--revealDur) var(--revealEase) var(--d, 0ms);
 }
 
+/* motion off */
 @media (prefers-reduced-motion: reduce){
   .reveal [data-reveal],
   .reveal[data-show="true"] [data-reveal]{
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    will-change: auto !important;
   }
 }

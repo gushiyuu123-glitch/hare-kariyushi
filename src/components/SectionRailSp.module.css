@@ -1,0 +1,89 @@
+/* SectionRailSp.module.css */
+
+.rail{
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
+  position: fixed;
+  left: 14px;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  z-index: 35;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  pointer-events: none;
+  user-select: none;
+
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+
+  transition:
+    opacity .66s var(--ease) 160ms,
+    transform .66s var(--ease) 160ms;
+
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Hero中（またはhidden指定）は消す */
+.rail[data-hidden="true"]{
+  opacity: 0;
+  transform: translate3d(-10px, 0, 0);
+
+  transition:
+    opacity .34s ease,
+    transform .34s ease;
+}
+
+.no{
+  display: inline-block;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  font-variant-numeric: tabular-nums;
+
+  color: rgba(var(--hare-muted, 120 120 120), .56);
+  transform: translateX(.04em);
+}
+
+.rule{
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--hare-line, 40 40 40), 0) 0%,
+      rgba(var(--hare-line, 40 40 40), .18) 18%,
+      rgba(var(--hare-line, 40 40 40), .18) 82%,
+      rgba(var(--hare-line, 40 40 40), 0) 100%
+    );
+}
+
+.label{
+  display: inline-block;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: rgba(var(--hare-muted, 120 120 120), .86);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .rail,
+  .rail[data-hidden="true"]{
+    transition: none !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
+
+/* SP専用ファイルだけど、念のため広い画面では消す */
+@media (min-width: 900px){
+  .rail{ display: none; }
+}

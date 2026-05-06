@@ -1,25 +1,32 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
+import AppPc from "./AppPc";
+import AppSp from "./AppSp";
 
-import Hero from "./sections/Hero";
-import Collection from "./sections/Collection";
+const SP_MAX = 899; // ここが境界（好みで900/960/1023に変えてOK）
 
-import ProductsSection from "./sections/ProductsSection";
-import Concept from "./sections/Concept";
-import Products from "./sections/Products";
-import Voices from "./sections/Voices";
+function useIsSp() {
+  const [isSp, setIsSp] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(`(max-width:${SP_MAX}px)`).matches;
+  });
 
-import GuideSection from "./sections/GuideSection";
-import Guide from "./sections/Guide";
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width:${SP_MAX}px)`);
+    const onChange = (e) => setIsSp(e.matches);
 
-import Stockists from "./sections/Stockists";
-import Inquiry from "./sections/Inquiry";
-import Footer from "./sections/Footer";
+    // 初期同期（端末回転や復帰でも安定）
+    setIsSp(mq.matches);
 
-import SectionRail from "./components/SectionRail";
-import RightMenu from "./components/RightMenu";
-import CartWidget from "./components/CartWidget";
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
+
+  return isSp;
+}
 
 export default function App() {
+  const isSp = useIsSp();
+
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
 
@@ -36,16 +43,13 @@ export default function App() {
   const addToCart = useCallback((product) => {
     setCart((current) => {
       const exists = current.find((item) => item.no === product.no);
-
       if (exists) {
         return current.map((item) =>
           item.no === product.no ? { ...item, qty: item.qty + 1 } : item
         );
       }
-
       return [...current, { ...product, qty: 1 }];
     });
-
     setCartOpen(true);
   }, []);
 
@@ -76,46 +80,28 @@ export default function App() {
     setCartOpen(false);
   }, []);
 
-  return (
-    <>
-      {/* UIレイヤー：mainの外に隔離 */}
-      <SectionRail />
-      <RightMenu forceHidden={cartOpen} />
+  const toggleCart = useCallback(() => {
+    setCartOpen((v) => !v);
+  }, []);
 
-      <CartWidget
-        cart={cart}
-        open={cartOpen}
-        count={cartCount}
-        total={cartTotal}
-        onToggle={() => setCartOpen((value) => !value)}
-        onClose={() => setCartOpen(false)}
-        onIncrease={increaseItem}
-        onDecrease={decreaseItem}
-        onRemove={removeItem}
-        onClear={clearCart}
-      />
+  const closeCart = useCallback(() => {
+    setCartOpen(false);
+  }, []);
 
-      <main id="main" aria-label="HARE KARIYUSHI">
-        <Hero />
+  const shared = {
+    cart,
+    cartOpen,
+    cartCount,
+    cartTotal,
+    onAddToCart: addToCart,
+    onToggleCart: toggleCart,
+    onCloseCart: closeCart,
+    onIncrease: increaseItem,
+    onDecrease: decreaseItem,
+    onRemove: removeItem,
+    onClear: clearCart,
+  };
 
-        <Collection />
-
-        <ProductsSection>
-          <Concept />
-          <Products onAddToCart={addToCart} />
-          <Voices />
-        </ProductsSection>
-
-        <GuideSection>
-          <Guide />
-        </GuideSection>
-
-        <Stockists />
-
-        <Inquiry />
-
-        <Footer />
-      </main>
-    </>
-  );
+  // DOM分離：どっちか片方だけ描画（干渉ゼロ）
+  return isSp ? <AppSp {...shared} /> : <AppPc {...shared} />;
 }

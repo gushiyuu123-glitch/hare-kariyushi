@@ -1,0 +1,471 @@
+/* CollectionSp.module.css */
+
+.collection{
+  --ease: cubic-bezier(.22, 1, .36, 1);
+
+  position: relative;
+  background: rgb(var(--hare-bg, 246 244 240));
+  color: rgb(var(--hare-text, 22 22 22));
+  border-top: 1px solid rgba(var(--hare-line, 40 40 40), .10);
+
+  overflow-x: clip;
+
+  /* 右上MENUを考慮（アンカーで被りにくく） */
+  scroll-margin-top: calc(64px + env(safe-area-inset-top));
+}
+
+@supports not (overflow: clip){
+  .collection{ overflow-x: hidden; }
+}
+
+.inner{
+  width: min(560px, 100%);
+  margin: 0 auto;
+
+  padding:
+    clamp(54px, 8vw, 78px)
+    20px
+    clamp(68px, 9vw, 94px);
+
+  box-sizing: border-box;
+}
+
+.runningHead{
+  width: fit-content;
+  margin: 0 0 22px 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-muted, 120 120 120), .84);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.runningHead::before{
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: rgba(var(--hare-line, 40 40 40), .12);
+}
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.header{
+  min-width: 0;
+}
+
+.title{
+  margin: 0;
+
+  font-size: clamp(28px, 8.2vw, 34px);
+  line-height: 1.26;
+  letter-spacing: -0.04em;
+
+  font-weight: var(--w-title, 600);
+  color: rgba(var(--hare-ink, 24 22 18), .93);
+
+  text-wrap: balance;
+}
+
+.lead{
+  margin: 14px 0 0;
+
+  font-size: 14px;
+  line-height: 1.9;
+  letter-spacing: .01em;
+
+  color: rgba(var(--hare-ink, 24 22 18), .78);
+}
+
+.points{
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+
+  display: grid;
+  gap: 0;
+}
+
+.points li{
+  position: relative;
+
+  padding: 12px 0 12px 16px;
+  border-top: 1px solid rgba(var(--hare-line, 40 40 40), .10);
+
+  font-size: 13px;
+  line-height: 1.72;
+  letter-spacing: .01em;
+
+  color: rgba(var(--hare-ink, 24 22 18), .84);
+}
+
+.points li:last-child{
+  border-bottom: 1px solid rgba(var(--hare-line, 40 40 40), .08);
+}
+
+.points li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22px;
+
+  width: 5px;
+  height: 1px;
+  background: rgba(var(--hare-line, 40 40 40), .32);
+}
+
+/* 次へ（矩形ボタン化しない） */
+.footLink{
+  margin: 20px 0 0;
+  padding-left: 12px;
+  border-left: 1px solid rgba(var(--hare-line, 40 40 40), .12);
+}
+
+.footAnchor{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+
+  position: relative;
+  padding-bottom: 9px;
+
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-muted, 120 120 120), .90);
+  text-decoration: none;
+}
+
+.footAnchor::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 1px;
+  background: rgba(var(--hare-line, 40 40 40), .14);
+
+  transform-origin: left;
+  transform: scaleX(.78);
+
+  transition:
+    transform .22s var(--ease),
+    background .22s ease;
+}
+
+.footMark{
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: rgba(var(--hare-muted, 120 120 120), .78);
+  transform: translateY(1px);
+
+  transition:
+    transform .22s var(--ease),
+    color .22s ease;
+}
+
+@media (hover:hover){
+  .footAnchor:hover{
+    color: rgba(var(--hare-ink, 24 22 18), .82);
+  }
+  .footAnchor:hover::after{
+    transform: scaleX(1);
+    background: rgba(var(--hare-line, 40 40 40), .22);
+  }
+  .footAnchor:hover .footMark{
+    transform: translate(3px, 3px);
+    color: rgba(var(--hare-ink, 24 22 18), .72);
+  }
+}
+
+/* -------- Gallery（SPは縦編集） -------- */
+
+.stage{
+  display: grid;
+  gap: 18px;
+}
+
+/* “重心の変化”を作る：2枚目だけ少し寄せる */
+.item{ margin: 0; }
+.itemA{ width: 100%; }
+.itemB{ width: 92%; margin-left: auto; }
+.itemC{ width: 96%; margin-right: auto; }
+
+.media{
+  position: relative;
+  width: 100%;
+
+  overflow: hidden;
+  background: rgba(var(--hare-line, 40 40 40), .04);
+
+  outline: 1px solid rgba(var(--hare-line, 40 40 40), .08);
+  outline-offset: -1px;
+
+  isolation: isolate;
+}
+
+.itemA .media{ aspect-ratio: 4 / 5.2; }
+.itemB .media{ aspect-ratio: 4 / 5; }
+.itemC .media{ aspect-ratio: 4 / 5.1; }
+
+.media::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.04) 0%,
+      rgba(255,255,255,0) 36%,
+      rgba(0,0,0,.045) 100%
+    );
+
+  opacity: .78;
+}
+
+.media::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  pointer-events: none;
+  border: 1px solid rgba(var(--hare-line, 40 40 40), .055);
+}
+
+.image{
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  transform: scale(1.001);
+  filter: saturate(.98) contrast(1.01);
+
+  transition:
+    transform .9s var(--ease),
+    filter .9s var(--ease);
+}
+
+.itemA .image{ object-position: 54% 56%; }
+.itemB .image{ object-position: 50% 32%; }
+.itemC .image{ object-position: 50% 48%; }
+
+.caption{
+  margin-top: 10px;
+
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-muted, 120 120 120), .92);
+}
+
+.capNo{
+  font-variant-numeric: tabular-nums;
+  opacity: .86;
+}
+
+.capText{
+  letter-spacing: .10em;
+}
+
+@media (hover:hover){
+  .item:hover .image{
+    transform: scale(1.02);
+    filter: saturate(1) contrast(1.02);
+  }
+}
+
+/* bottom */
+.bottomLine{
+  margin-top: 34px;
+  height: 1px;
+  background: rgba(var(--hare-line, 40 40 40), .10);
+}
+
+/* small devices */
+@media (max-width: 360px){
+  .inner{ padding-left: 16px; padding-right: 16px; }
+  .title{ line-height: 1.28; }
+  .itemB{ width: 94%; }
+  .itemC{ width: 100%; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .image,
+  .footAnchor::after,
+  .footMark{
+    transition: none !important;
+  }
+
+  .item:hover .image{
+    transform: none;
+  }
+}
+/* 1) セクション余白：少しだけ詰める */
+.inner{
+  padding:
+    clamp(48px, 7.4vw, 70px)
+    20px
+    clamp(60px, 8.6vw, 86px);
+}
+
+/* 2) ランニング：少し小さく＋余白減 */
+.runningHead{
+  margin: 0 0 18px 0;
+  font-size: 9px;
+  letter-spacing: .16em;
+}
+
+/* 3) タイトル：1段だけ小さく */
+.title{
+  font-size: clamp(26px, 7.6vw, 32px);
+  line-height: 1.28;
+}
+
+/* 4) リード：少しだけ小さく */
+.lead{
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+/* 5) 箇条書き：詰めすぎず1段だけ小さく */
+.points{
+  margin-top: 18px;
+}
+.points li{
+  padding: 11px 0 11px 15px;
+  font-size: 12px;
+  line-height: 1.68;
+}
+.points li::before{
+  top: 21px;
+}
+
+/* 6) “次へ”：余白ちょい減 */
+.footLink{ margin-top: 18px; }
+.footAnchor{ font-size: 10px; }
+
+/* 7) ギャラリー：間隔とキャプションを少しだけ */
+.stage{ gap: 16px; }
+.itemB{ width: 90%; }
+.itemC{ width: 94%; }
+
+.caption{
+  margin-top: 9px;
+  font-size: 10px;
+  gap: 8px;
+}
+
+/* 8) 下線：少しだけ */
+.bottomLine{ margin-top: 30px; }
+.stage{
+  display: grid;
+  gap: 14px;
+}
+
+.item{
+  margin: 0;
+}
+
+.itemA{
+  width: 100%;
+}
+
+.itemB{
+  width: 88%;
+  margin-left: auto;
+}
+
+.itemC{
+  width: 94%;
+  margin-right: auto;
+}
+
+.media{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  background: rgba(var(--hare-line, 40 40 40), .04);
+  outline: 1px solid rgba(var(--hare-line, 40 40 40), .08);
+  outline-offset: -1px;
+}
+
+.itemA .media{
+  aspect-ratio: 4 / 5.4;
+}
+
+.itemB .media{
+  aspect-ratio: 4 / 5.1;
+}
+
+.itemC .media{
+  aspect-ratio: 4 / 5.25;
+}
+
+.image{
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  filter: saturate(.98) contrast(1.01);
+}
+
+.itemA .image{
+  object-position: 50% 50%;
+}
+
+.itemB .image{
+  object-position: 50% 34%;
+}
+
+.itemC .image{
+  object-position: 50% 46%;
+}
+.afterGallery{
+  margin-top: 14px;
+  padding-left: 12px;
+  border-left: 1px solid rgba(var(--hare-line, 40 40 40), .10);
+}
+
+.afterLink{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  color: rgba(var(--hare-muted, 120 120 120), .86);
+  text-decoration: none;
+}

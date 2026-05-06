@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styles from "./CartWidget.module.css";
 
 const formatYen = (value) => `¥${value.toLocaleString("ja-JP")}`;
@@ -16,9 +17,40 @@ export default function CartWidget({
 }) {
   const isEmpty = cart.length === 0;
 
+  const triggerRef = useRef(null);
+  const closeRef = useRef(null);
+  const lastFocusRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    // フォーカス元を保存 → closeへ
+    lastFocusRef.current = document.activeElement;
+    closeRef.current?.focus?.();
+
+    // 背景スクロール固定（html）
+    const prevOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+
+    // Escで閉じる
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.documentElement.style.overflow = prevOverflow;
+
+      // フォーカスをトリガーへ戻す（なければ直前）
+      (triggerRef.current ?? lastFocusRef.current)?.focus?.();
+    };
+  }, [open, onClose]);
+
   return (
     <div className={styles.cart} data-open={open ? "true" : "false"}>
       <button
+        ref={triggerRef}
         type="button"
         className={styles.trigger}
         onClick={onToggle}
@@ -43,6 +75,8 @@ export default function CartWidget({
         id="hare-cart-panel"
         className={styles.panel}
         data-open={open ? "true" : "false"}
+        role="dialog"
+        aria-modal="true"
         aria-hidden={open ? undefined : true}
         inert={open ? undefined : true}
       >
@@ -55,10 +89,12 @@ export default function CartWidget({
           </div>
 
           <button
+            ref={closeRef}
             type="button"
             className={styles.close}
             onClick={onClose}
             aria-label="Close cart"
+            tabIndex={open ? 0 : -1}
           >
             ×
           </button>
@@ -80,7 +116,14 @@ export default function CartWidget({
               {cart.map((item) => (
                 <li className={styles.item} key={item.no}>
                   <div className={styles.thumbWrap} aria-hidden="true">
-                    <img className={styles.thumb} src={item.img} alt="" />
+                    <img
+                      className={styles.thumb}
+                      src={item.img}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      draggable="false"
+                    />
                   </div>
 
                   <div className={styles.itemBody}>
@@ -96,7 +139,10 @@ export default function CartWidget({
                     </div>
 
                     <div className={styles.controls}>
-                      <div className={styles.qty} aria-label={`${item.name} quantity`}>
+                      <div
+                        className={styles.qty}
+                        aria-label={`${item.name} quantity`}
+                      >
                         <button
                           type="button"
                           className={styles.qtyBtn}

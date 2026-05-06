@@ -1,4 +1,4 @@
-import styles from "./Footer.module.css";
+import styles from "./FooterSp.module.css";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
 import { useSectionReveal } from "../hooks/useSectionReveal";
@@ -24,7 +24,7 @@ const DESIGNER = {
   url: "https://gushikendesign.com/",
 };
 
-export default function Footer() {
+export default function FooterSp() {
   const reduced = useReducedMotion();
 
   const { ref, show } = useSectionReveal({
